@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import HomePage from './components/home/page'
-
+import Maowenhui from '../Maowenhui/chengzipi'
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home')
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
     },
     {
       name: '节日特辑',
-      key: 'festival',
+      key: 'Maowenhui',
       icon: '🎉'
     },
     {
@@ -53,6 +53,9 @@ const Dashboard = () => {
   const renderContent = () => {
     if (activeTab === 'home') {
       return <HomePage />
+    }
+    if (activeTab === 'Maowenhui') {
+      return <Maowenhui />
     }
     return <div>请选择功能</div>
   }

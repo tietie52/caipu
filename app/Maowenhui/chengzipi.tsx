@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FestivalRecipes: React.FC = () => {
   const recipes = [
@@ -45,28 +45,42 @@ const FestivalRecipes: React.FC = () => {
     }
   ];
 
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">中国传统节日特辑菜谱</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {recipes.map((recipe, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div 
+            key={index} 
+            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onClick={() => toggleExpand(index)}
+          >
             <img src={recipe.image} alt={`${recipe.festival} - ${recipe.dish}`} className="w-full h-64 object-cover" />
             <div className="p-6">
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">{recipe.festival} - {recipe.dish}</h2>
-              <p className="text-gray-600 mb-4">{recipe.description}</p>
-              <h3 className="text-lg font-medium text-gray-700 mb-2">材料:</h3>
-              <ul className="list-disc list-inside text-gray-600 mb-4">
-                {recipe.ingredients.map((ingredient, i) => (
-                  <li key={i}>{ingredient}</li>
-                ))}
-              </ul>
-              <h3 className="text-lg font-medium text-gray-700 mb-2">步骤:</h3>
-              <ol className="list-decimal list-inside text-gray-600">
-                {recipe.steps.map((step, i) => (
-                  <li key={i}>{step}</li>
-                ))}
-              </ol>
+              {expandedIndex === index && (
+                <>
+                  <p className="text-gray-600 mb-4">{recipe.description}</p>
+                  <h3 className="text-lg font-medium text-gray-700 mb-2">材料:</h3>
+                  <ul className="list-disc list-inside text-gray-600 mb-4">
+                    {recipe.ingredients.map((ingredient, i) => (
+                      <li key={i}>{ingredient}</li>
+                    ))}
+                  </ul>
+                  <h3 className="text-lg font-medium text-gray-700 mb-2">步骤:</h3>
+                  <ol className="list-decimal list-inside text-gray-600">
+                    {recipe.steps.map((step, i) => (
+                      <li key={i}>{step}</li>
+                    ))}
+                  </ol>
+                </>
+              )}
             </div>
           </div>
         ))}

@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import HomePage from './components/home/page'
 import Maowenhui from '../Maowenhui/chengzipi'
+import Zhongxinna from '../Zhongxinna/TiAom-Z'
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home')
 
@@ -20,7 +21,7 @@ const Dashboard = () => {
     },
     {
       name: '今日推荐',
-      key: 'recommend',
+      key: 'Zhongxinna',
       icon: '🌟'
     },
     {
@@ -56,6 +57,9 @@ const Dashboard = () => {
     }
     if (activeTab === 'Maowenhui') {
       return <Maowenhui />
+    }
+    if (activeTab ==='Zhongxinna') {
+      return <Zhongxinna />
     }
     return <div>请选择功能</div>
   }

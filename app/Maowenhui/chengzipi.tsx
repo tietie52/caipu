@@ -46,9 +46,18 @@ const FestivalRecipes: React.FC = () => {
   ];
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [likedRecipes, setLikedRecipes] = useState<Record<number, boolean>>({});
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const toggleLike = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLikedRecipes(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
   };
 
   return (
@@ -58,10 +67,19 @@ const FestivalRecipes: React.FC = () => {
         {recipes.map((recipe, index) => (
           <div 
             key={index} 
-            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            className="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
             onClick={() => toggleExpand(index)}
           >
             <img src={recipe.image} alt={`${recipe.festival} - ${recipe.dish}`} className="w-full h-64 object-cover" />
+            <div 
+              className="absolute top-4 right-4 text-3xl"
+              onClick={(e) => toggleLike(index, e)}
+            >
+              {likedRecipes[index] ? 
+                <span className="text-red-500">❤️</span> : 
+                <span className="text-gray-400">♡</span>
+              }
+            </div>
             <div className="p-6">
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">{recipe.festival} - {recipe.dish}</h2>
               {expandedIndex === index && (

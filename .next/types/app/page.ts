@@ -1,4 +1,4 @@
-// File: F:\homwork\caipu\app\page.tsx
+// File: C:\Users\周\Desktop\新建文件夹 (4)\caipu\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

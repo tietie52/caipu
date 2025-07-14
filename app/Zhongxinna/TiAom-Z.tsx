@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // 定义菜谱类型
 interface Recipe {
@@ -55,6 +55,16 @@ const todayRecipes: Recipe[] = [
 ];
 
 const TiAomZ: React.FC = () => {
+  const [likedRecipes, setLikedRecipes] = useState<Record<number, boolean>>({});
+
+  const toggleLike = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLikedRecipes(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">今日推荐菜谱</h1>
@@ -62,8 +72,17 @@ const TiAomZ: React.FC = () => {
         {todayRecipes.map((recipe, index) => (
           <div 
             key={index} 
-            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
+            <div 
+              className="absolute top-4 right-4 text-3xl"
+              onClick={(e) => toggleLike(index, e)}
+            >
+              {likedRecipes[index] ? 
+                <span className="text-red-500">❤️</span> : 
+                <span className="text-green-400">♡</span>
+              }
+            </div>
             <img src={recipe.image} alt={recipe.name} className="w-full h-64 object-cover" />
             <div className="p-6">
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">{recipe.name}</h2>

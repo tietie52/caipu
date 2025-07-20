@@ -6,6 +6,7 @@ import HomePage from './components/home/page'
 import Maowenhui from '../Maowenhui/chengzipi'
 import Zhongxinna from '../Zhongxinna/TiAom-Z'
 import Zhouxiaowen from '../Zhouxiaowen/Zxw'
+import Qinlinxiang from '../Qinlinxiang/Qlx'
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home')
 
@@ -17,7 +18,7 @@ const Dashboard = () => {
     },
     {
       name: '分类菜谱',
-      key: 'categories',
+      key: 'Qinlinxiang',
       icon: '📚'
     },
     {
@@ -64,6 +65,9 @@ const Dashboard = () => {
     }
     if (activeTab === 'Zhouxiaowen'){
       return <Zhouxiaowen />
+    }
+    if (activeTab === 'Qinlinxiang'){
+      return <Qinlinxiang />
     }
     return <div>请选择功能</div>
   }

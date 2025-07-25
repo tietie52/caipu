@@ -7,6 +7,7 @@ import Maowenhui from '../Maowenhui/chengzipi'
 import Zhongxinna from '../Zhongxinna/TiAom-Z'
 import Zhouxiaowen from '../Zhouxiaowen/Zxw'
 import Qinlinxiang from '../Qinlinxiang/Qlx'
+import Hexinyi from '../Hexinyi/CommunityForum'
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home')
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
     },
     {
       name: '今日推荐',
-      key: 'Zhongxinna',
+      key: 'Zhongxinna',  // 导航项唯一标识
       icon: '🌟'
     },
     {
@@ -48,7 +49,7 @@ const Dashboard = () => {
     },
     {
       name: '社区论坛',
-      key: 'forum',
+      key: 'Hexinyi',
       icon: '💬'
     }
   ]
@@ -60,14 +61,17 @@ const Dashboard = () => {
     if (activeTab === 'Maowenhui') {
       return <Maowenhui />
     }
-    if (activeTab ==='Zhongxinna') {
-      return <Zhongxinna />
+    if (activeTab === 'Zhongxinna') {
+      return <Zhongxinna />; // 正确渲染对应组件
     }
     if (activeTab === 'Zhouxiaowen'){
       return <Zhouxiaowen />
     }
     if (activeTab === 'Qinlinxiang'){
       return <Qinlinxiang />
+    }
+    if (activeTab === 'Hexinyi'){
+      return <Hexinyi />
     }
     return <div>请选择功能</div>
   }

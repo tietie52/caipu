@@ -6,7 +6,15 @@ module.exports = {
     },
     plugins: [require("daisyui")],
     daisyui: {
-      themes: ["light", "dark", "cupcake"], // 可根据需求选择主题
+      themes: [{
+        foodTheme: {
+          "primary": "#f59e0b",
+          "secondary": "#f97316",
+          "accent": "#d97706",
+          "neutral": "#f3f4f6",
+          "base-100": "#ffffff",
+        }
+      }],
     }
   };
   

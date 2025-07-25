@@ -79,7 +79,26 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 大标题 */}
-      <div className="bg-gradient-to-r from-primary/80 to-secondary/80 py-8">
+      <div className="bg-gradient-to-r from-primary/80 to-secondary/80 py-8 relative">
+        {/* 甜品图标组 */}
+        <div className="absolute -left-4 -top-2 flex gap-2">
+          <img 
+            src="\img\aaf8dfe62f7bb6897045524600306edc.png"
+            className="w-12 h-12 object-cover rounded-full animate-bounce"
+            alt="dessert"
+          />
+          <img
+            src="\img\72f854523d2a8664ee8a435b0ec47baa.png"
+            className="w-12 h-12 object-cover rounded-full animate-pulse"
+            alt="dessert"
+          />
+          <img
+            src="\img\d3048b10f3d9f8aafb77b3aa6d29ccc4.png"
+            className="w-12 h-12 object-cover rounded-full animate-spin-slow"
+            alt="dessert"
+          />
+        </div>
+        
         <h1 className="text-5xl font-bold text-center text-white/90">
           智能菜谱系统
         </h1>

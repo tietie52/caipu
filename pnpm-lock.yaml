@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '-':
+        specifier: ^0.0.1
+        version: 0.0.1
       '@fortawesome/free-solid-svg-icons':
         specifier: ^6.7.2
         version: 6.7.2
@@ -20,6 +23,9 @@ importers:
       axios:
         specifier: ^1.9.0
         version: 1.9.0
+      carousel:
+        specifier: ^0.0.3
+        version: 0.0.3
       daisyui:
         specifier: ^3.0.0
         version: 3.9.4
@@ -39,7 +45,7 @@ importers:
         specifier: ^14.2.28
         version: 14.2.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
-        specifier: ^18.0.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
@@ -59,6 +65,9 @@ importers:
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
+      responsive:
+        specifier: ^2.0.0
+        version: 2.0.0
       tailwindcss:
         specifier: ^3.0.0
         version: 3.4.17
@@ -98,6 +107,9 @@ importers:
         version: 5.8.3
 
 packages:
+
+  '-@0.0.1':
+    resolution: {integrity: sha512-3HfneK3DGAm05fpyj20sT3apkNcvPpCuccOThOPdzz8sY7GgQGe0l93XH9bt+YzibcTIgUAIMoyVJI740RtgyQ==}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -468,6 +480,9 @@ packages:
   caniuse-lite@1.0.30001715:
     resolution: {integrity: sha512-7ptkFGMm2OAOgvZpwgA4yjQ5SQbrNVGdRjzH0pBdy1Fasvcr+KAeECmbCAECzTuDuoX0FCY8KzUxjf9+9kfZEw==}
 
+  carousel@0.0.3:
+    resolution: {integrity: sha512-7/6BwcKV4vepSCpurqJxTJlcigZAjU+RdhyRcye1RNEU/a8N8k7/jprMa7DGcVvP+A8xaHHvWqWq2qygJr1jcw==}
+
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
 
@@ -626,6 +641,9 @@ packages:
   doctrine@3.0.0:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
+
+  domready@0.2.13:
+    resolution: {integrity: sha512-32G1m2FCiSLdxRVnamVdMVpgpSyE4aesx8Bof8Usm6dGpq+19PAXFtrKWWRYJoaSIfwTVTHV5wlQyyZ4aHhauA==}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -1642,6 +1660,9 @@ packages:
     resolution: {integrity: sha512-U7WjGVG9sH8tvjW5SmGbQuui75FiyjAX72HX15DwBBwF9dNiQZRQAg9nnPhYy+TUnE0+VcrttuvNI8oSxZcocA==}
     hasBin: true
 
+  responsive@2.0.0:
+    resolution: {integrity: sha512-pFpYb/RBAMJ43BR1T2/hnkRcOq5Iib4hIDvPrYIqdMm9BmZ2RAHLzQrirFTxpO2ndGcAAuheJoI+ZYRpfN2v3Q==}
+
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
@@ -2022,6 +2043,8 @@ packages:
 
 snapshots:
 
+  '-@0.0.1': {}
+
   '@alloc/quick-lru@5.2.0': {}
 
   '@babel/runtime@7.28.2': {}
@@ -2400,6 +2423,10 @@ snapshots:
 
   caniuse-lite@1.0.30001715: {}
 
+  carousel@0.0.3:
+    dependencies:
+      domready: 0.2.13
+
   ccount@2.0.1: {}
 
   chalk@4.1.2:
@@ -2549,6 +2576,8 @@ snapshots:
   doctrine@3.0.0:
     dependencies:
       esutils: 2.0.3
+
+  domready@0.2.13: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -3509,10 +3538,12 @@ snapshots:
 
   modern-react@file:(@fortawesome/fontawesome-svg-core@7.0.0)(@types/react@18.3.20)(use-sync-external-store@1.5.0(react@18.3.1)):
     dependencies:
+      '-': 0.0.1
       '@fortawesome/free-solid-svg-icons': 6.7.2
       '@fortawesome/react-fontawesome': 0.2.3(@fortawesome/fontawesome-svg-core@7.0.0)(react@18.3.1)
       '@types/react-redux': 7.1.34
       axios: 1.9.0
+      carousel: 0.0.3
       daisyui: 3.9.4
       date-fns: 4.1.0
       express: 5.1.0
@@ -3525,6 +3556,7 @@ snapshots:
       react-responsive-carousel: 3.2.23
       react-router-dom: 7.7.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       reflect-metadata: 0.2.2
+      responsive: 2.0.0
       tailwindcss: 3.4.17
       zustand: 5.0.6(@types/react@18.3.20)(react@18.3.1)(use-sync-external-store@1.5.0(react@18.3.1))
     transitivePeerDependencies:
@@ -3904,6 +3936,8 @@ snapshots:
       is-core-module: 2.16.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
+
+  responsive@2.0.0: {}
 
   reusify@1.1.0: {}
 

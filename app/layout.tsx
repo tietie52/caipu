@@ -24,8 +24,29 @@ export default function RootLayout({
             登录/注册
           </Link>
         </nav>
+        {/* 饺子装饰 */}
+        <div className="absolute top-8 right-8 opacity-60 z-20">
+          <img 
+            src="/img/饺子.jpg"
+            className="w-40 h-40 object-cover rounded-full shadow-xl animate-spin-slow"
+            alt="dumpling"
+          />
+        </div>
+
+        
         {children}
       </body>
     </html>
   );
 }
+
+{/* 删除以下装饰元素 */}
+{/*
+<div className="fixed left-0 bottom-0 -z-10">
+  <img 
+    src="/img/xshlogo01.png"
+    className="w-32 opacity-20 animate-spin-slow"
+    alt="decorative"
+  />
+</div>
+*/}

@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 
+
 export default function Login() {
   const { register, handleSubmit } = useForm();
 
@@ -11,7 +12,10 @@ export default function Login() {
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
       // 处理响应
     } catch (error) {

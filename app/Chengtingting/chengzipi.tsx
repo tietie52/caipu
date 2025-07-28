@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import useStore from '../../globalState';
 
 export const recipes = [
   {
+    id: 1,
     festival: '春节',
     dish: '饺子',
     description: '饺子是春节的传统食物，象征着财富和团圆。',
@@ -23,6 +25,7 @@ export const recipes = [
     image: '/img/饺子.jpg'
   },
   {
+    id: 2,
     festival: '端午节',
     dish: '粽子',
     description: '粽子是端午节的传统食物，纪念屈原。',
@@ -43,6 +46,7 @@ export const recipes = [
     image: '/img/粽子.jpg'
   },
   {
+    id: 3,
     festival: '中秋节',
     dish: '月饼',
     description: '月饼是中秋节的传统食物，象征着团圆。',
@@ -68,38 +72,43 @@ export const recipes = [
 ];
 
 const FestivalRecipes: React.FC = () => {
+  // 从全局状态解构获取正确的方法
+  const {
+    isFestivalFavorite,
+    toggleFestivalFavorite
+  } = useStore();
+  
+  // 本地状态管理展开/折叠
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [likedRecipes, setLikedRecipes] = useState<Record<number, boolean>>({});
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  const toggleLike = (index: number, e: React.MouseEvent) => {
+  // 更新收藏切换处理函数
+  const handleLikeToggle = (recipeId: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    setLikedRecipes(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
+    toggleFestivalFavorite(recipeId);
   };
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">中国传统节日特辑菜谱</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">节日特辑菜谱</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {recipes.map((recipe, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="relative bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
             onClick={() => toggleExpand(index)}
           >
             <img src={recipe.image} alt={`${recipe.festival} - ${recipe.dish}`} className="w-full h-64 object-cover" />
-            <div 
-              className="absolute top-4 right-4 text-3xl"
-              onClick={(e) => toggleLike(index, e)}
+            <div
+              className="absolute top-4 right-4 text-3xl cursor-pointer"
+              onClick={(e) => handleLikeToggle(recipe.id, e)}
             >
-              {likedRecipes[index] ? 
-                <span className="text-red-500">❤️</span> : 
+              {/* 使用ID检查收藏状态 */}
+              {isFestivalFavorite(recipe.id) ?
+                <span className="text-red-500">❤️</span> :
                 <span className="text-gray-400">♡</span>
               }
             </div>

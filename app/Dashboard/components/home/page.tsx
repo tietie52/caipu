@@ -1,14 +1,29 @@
 'use client'
 
 import Link from 'next/link'
-import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { useState, useEffect } from 'react'
 
 export default function HomePage() {
+  // 轮播状态管理
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const slides = [
+    { src: "/img/下载 (1).jpg", alt: "美食展示1" },
+    { src: "/img/下载.jpg", alt: "美食展示2" },
+    { src: "/img/OIP-C.jpg", alt: "美食展示3" }
+  ]
+
+  // 自动轮播效果
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [slides.length])
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-4">
       {/* 欢迎横幅 */}
-      <div className="bg-white p-8 rounded-lg text-center">
+      <div className="bg-white p-8 rounded-lg text-center shadow-md">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           开启您的烹饪之旅
         </h1>
@@ -27,26 +42,52 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 轮播图片 */}
-      <div className="w-full max-w-3xl mx-auto">
-        <Carousel
-          autoPlay
-          infiniteLoop
-          showThumbs={false}
-          showStatus={false}
-          interval={3000}
-          className="border-4 border-primary rounded-xl overflow-hidden shadow-lg"
+      {/* 自定义轮播组件 */}
+      <div className="w-full max-w-3xl mx-auto relative overflow-hidden border-4 border-primary rounded-xl shadow-lg">
+        {/* 轮播图片容器 */}
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          <div>
-            <img src="\img\下载 (1).jpg" alt="美食展示1" className="object-cover h-64" />
-          </div>
-          <div>
-            <img src="\img\下载.jpg" alt="美食展示2" className="object-cover h-64" />
-          </div>
-          <div>
-            <img src="\img\OIP-C.jpg" alt="美食展示3" className="object-cover h-64" />
-          </div>
-        </Carousel>
+          {slides.map((slide, index) => (
+            <div key={index} className="min-w-full">
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                className="object-cover h-64 w-full"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* 轮播指示器 */}
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${currentSlide === index ? 'bg-white' : 'bg-white/50'
+                }`}
+              aria-label={`切换到第 ${index + 1} 张图片`}
+            />
+          ))}
+        </div>
+
+        {/* 左右箭头控制 */}
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-colors"
+          aria-label="上一张"
+        >
+          ❮
+        </button>
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-colors"
+          aria-label="下一张"
+        >
+          ❯
+        </button>
       </div>
 
       {/* 特色功能展示 */}

@@ -4,9 +4,12 @@ import { useState } from 'react'
 
 import HomePage from './components/home/page'
 import Maowenhui from '../Maowenhui/chengzipi'
-import Zhongxinna from '../Zhongxinna/TiAom-Z'
+import Zhongxinna from '../Zhongxinna/page'
 import Zhouxiaowen from '../Zhouxiaowen/Zxw'
 import Qinlinxiang from '../Qinlinxiang/Qlx'
+// 修改导入路径
+import FavoritePage from '../favorite/favorite/page'
+
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home')
 
@@ -60,7 +63,7 @@ const Dashboard = () => {
     if (activeTab === 'Maowenhui') {
       return <Maowenhui />
     }
-    if (activeTab ==='Zhongxinna') {
+    if (activeTab === 'Zhongxinna') {
       return <Zhongxinna />
     }
     if (activeTab === 'Zhouxiaowen'){
@@ -68,6 +71,13 @@ const Dashboard = () => {
     }
     if (activeTab === 'Qinlinxiang'){
       return <Qinlinxiang />
+    }
+    // 重复的判断条件可以删除
+    // if (activeTab === 'Qinlinxiang'){
+    //   return <Qinlinxiang />
+    // }
+    if( activeTab === 'favorites'){
+      return <FavoritePage />
     }
     return <div>请选择功能</div>
   }
